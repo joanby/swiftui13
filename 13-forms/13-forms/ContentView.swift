@@ -20,8 +20,8 @@ struct ContentView: View {
         Course(name: "Curso Completo de Unreal Engine de cero a experto", image: "unrealengine", type: "Videojuegos", priceLevel: 4),
         Course(name: "Curso de Unity 2019: Aprende a crear juegos de rol", image: "videogames", type: "Videojuegos", priceLevel: 3, purchased: true)
     ]
-    
-    @State var selectedCourse: Course?
+        
+    @State private var selectedCourse: Course?
     
     @State private var showSettingsView: Bool = false
     
@@ -68,6 +68,24 @@ struct ContentView: View {
                         }
                         .onTapGesture {
                             self.selectedCourse = course
+                        }
+                        .actionSheet(item: self.$selectedCourse){ _ in
+                            ActionSheet(title: Text("Indica tu acción a realizar"),
+                                        message: nil,
+                                        buttons: [
+                                            .default(Text("Marcar como favorito"), action: {
+                                                if let selectedCourse = self.selectedCourse {
+                                                    self.setFeatured(item: selectedCourse)
+                                                }
+                                            }),
+                                            .destructive(Text("Eliminar curso"), action: {
+                                                if let selectedCourse = self.selectedCourse {
+                                                    self.delete(item: selectedCourse)
+                                                }
+                                            }),
+                                            //TODO: colocar aquí más opciones si se desea
+                                            .cancel()
+                            ])
                         }
                         
                         
