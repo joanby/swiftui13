@@ -21,7 +21,7 @@ struct DraggableView<T>: View where T: View {
         .opacity(dragState.isPressing ? 0.5 : 1.0)
         .offset(x: position.width + dragState.translation.width,
                 y: position.height + dragState.translation.height)
-        .animation(.easeIn)
+        .animation(.easeIn, value: position)
         .gesture(
             
             LongPressGesture(minimumDuration: 1.0)

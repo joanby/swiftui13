@@ -56,7 +56,7 @@ struct ContentView: View {
                                 y: self.isTopCard(card: card) ? self.dragState.translation.height : 0)
                         .scaleEffect(self.dragState.isDragging && self.isTopCard(card: card) ? 0.9 : 1.0)
                         .rotationEffect(Angle(degrees: Double(self.isTopCard(card: card) ? self.dragState.translation.width/10 : 0)))
-                        .animation(.interpolatingSpring(stiffness: 200, damping: 100))
+                        .animation(.interpolatingSpring(stiffness: 200, damping: 100), value: self.dragState.translation)
                         .transition(self.removalTransition)
                         .gesture(LongPressGesture(minimumDuration: 0.01)
                             .sequenced(before: DragGesture())
@@ -93,7 +93,7 @@ struct ContentView: View {
             }
             BottomBarView()
                 .opacity(self.dragState.isDragging ? 0.1 : 1.0)
-                .animation(.linear)
+                .animation(.linear, value: self.dragState.isDragging)
         }
     }
     

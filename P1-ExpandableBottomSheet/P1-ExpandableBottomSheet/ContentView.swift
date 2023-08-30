@@ -29,7 +29,7 @@ struct ContentView: View {
             .navigationBarTitle("Cursos Online")
             }
             .offset(y: self.showCourseDetail ? -150: 0)
-            .animation(.easeIn(duration: 0.25))
+            .animation(.easeIn(duration: 0.25), value: showCourseDetail)
             
             if showCourseDetail{
                 

@@ -19,7 +19,7 @@ struct DotsLoadingView: View {
                     .frame(width: 16, height: 16)
                     .foregroundColor(Color.green)
                     .scaleEffect(self.isLoading ? 0 : 1)
-                    .animation(Animation.linear(duration: 0.5).repeatForever().delay(Double(index)/6))
+                    .animation(Animation.linear(duration: 0.5).repeatForever().delay(Double(index)/6), value: self.isLoading)
             }
         }.onAppear(){
             self.isLoading = true

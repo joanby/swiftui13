@@ -120,13 +120,13 @@ struct ContentView: View {
                     ForEach(cards){ c in
                         CardView(card: c)
                             .offset(self.offset(for: c))
-                            .animation(.default)
+                            .animation(.default, value: self.offset(for: c))
                             .scaleEffect(1.0)
                             .padding(.horizontal, 30)
                             .zIndex(self.zIndex(for: c))
                             .shadow(color: .gray, radius: 1.5, x: 1.0, y: 1.0)
                             .transition(AnyTransition.slide.combined(with: .move(edge: .leading)).combined(with: .opacity))
-                            .animation(self.animation(for: c))
+                            .animation(self.animation(for: c), value: self.offset(for: c))
                             .gesture(TapGesture()
                                 .onEnded({ _ in
                                     withAnimation{
@@ -168,7 +168,7 @@ struct ContentView: View {
                 TransactionHistoryView()
                     .padding(.top, 20)
                     .transition(.move(edge: .bottom))
-                    .animation(Animation.linear(duration: 0.2).delay(0.1))
+                    .animation(Animation.linear(duration: 0.2).delay(0.1), value: 20)
             }
             Spacer()
         }

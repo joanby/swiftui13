@@ -22,7 +22,7 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        List(courses.indices){ idx in
+        ForEach(0..<courses.count, id: \.self){ idx in
             if self.courses[idx].feature{
                 CourseFullImageRow(course: self.courses[idx])
             }else{

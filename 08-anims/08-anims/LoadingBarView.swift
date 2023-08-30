@@ -27,7 +27,7 @@ struct LoadingBarView: View {
                 .stroke(Color.green, lineWidth: 5)
                 .frame(width: 50, height: 4)
                 .offset(x: isLoading ? 125 : -125, y: 0)
-                .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
+                .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false), value:self.isLoading)
                 .onAppear(){
                     self.isLoading = true
             }

@@ -22,7 +22,7 @@ struct LoadingView: View {
                 .stroke(Color.green, lineWidth: 8)
                 .frame(width: 150, height: 150)
                 .rotationEffect(Angle(degrees: isLoading ? 360 : 0))
-                .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false))
+                .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false), value:self.isLoading)
                 .onAppear(){
                     self.isLoading = true
                 }

@@ -47,7 +47,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView{
-            List(courses.indices){ idx in
+            ForEach(0..<courses.count, id: \.self){ idx in
                 ZStack{
                     if self.courses[idx].feature{
                         CourseFullImageRow(course: self.courses[idx])

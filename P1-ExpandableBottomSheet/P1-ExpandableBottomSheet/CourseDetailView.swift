@@ -39,13 +39,13 @@ struct CourseDetailView: View {
                     DescriptionView(icon: nil,
                                     content: self.course.description)
                 }
-                .animation(nil)
+                .animation(nil, value:offset)
                 .disabled(self.cardState == .half || self.dragState.isDragging)
             }
             .background(Color.white)
             .cornerRadius(15, antialiased: true)
             .offset(y: geometry.size.height*0.4 + self.dragState.translation.height+self.offset)
-            .animation(.interpolatingSpring(stiffness: 200, damping: 50, initialVelocity: 10))
+            .animation(.interpolatingSpring(stiffness: 200, damping: 50, initialVelocity: 10), value:cardState)
             .edgesIgnoringSafeArea(.all)
             .gesture(DragGesture()
             .updating(self.$dragState){ (value, state, transaction) in
