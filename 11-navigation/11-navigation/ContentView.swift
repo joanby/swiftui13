@@ -22,7 +22,7 @@ struct ContentView: View {
         Course(name: "Curso de Unity 2019: Aprende a crear juegos de rol", image: "videogames")
     ]
     
-    /*
+    
     init() {
         let appearance = UINavigationBarAppearance()
         appearance.largeTitleTextAttributes = [
@@ -43,26 +43,25 @@ struct ContentView: View {
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-    }*/
+    }
     
     var body: some View {
         NavigationView{
-            ForEach(0..<courses.count, id: \.self){ idx in
+            List(courses){ course in
                 ZStack{
-                    if self.courses[idx].feature{
-                        CourseFullImageRow(course: self.courses[idx])
+                    if course.feature{
+                        CourseFullImageRow(course: course)
                     }else{
-                        CourseRoundImageRow(course: self.courses[idx])
+                        CourseRoundImageRow(course: course)
                     }
                     
-                    NavigationLink(destination: DetailView(course: self.courses[idx])){
+                    NavigationLink(destination: DetailView(course: course)){
                         EmptyView()
-                    }
+                    }.opacity(0)
                 }
             }
             .navigationBarTitle("Cursos online de JB", displayMode: .automatic)
         }
-        
     }
 }
 
